@@ -6,10 +6,6 @@ var upperLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var specialChar = [ "!", "#", '"', "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 
-console.log(lowerLetter);
-console.log(upperLetter);
-console.log(numbers);
-console.log(specialChar);
 // Write password to the #password input
 function writePassword() {
   var passLength = parseInt(prompt('How long do you want your password to be? Choose from 8 - 128 characters'), 10);
@@ -25,52 +21,61 @@ function writePassword() {
   var special = confirm('do you want special characters in your password? ex: "#, %, &, $"');
 
   if (lowerCase === true && upperCase === false && numberConfirm === false && special === false){
-    //run function with lowLetters
+    generatePassword(lowerLetter);
   } else if (lowerCase === false && upperCase === true && numberConfirm === false && special === false){
-    //run function with upperLetters
+    generatePassword(upperLetter);
   } else if (lowerCase === false && upperCase === false && numberConfirm === true && special === false){
-    //run function with numbers
+    generatePassword(numbers);
   } else if (lowerCase === false && upperCase === false && numberConfirm === false && special === true){
-    // run function with specialChar
+    generatePassword(specialChar);
   } else if (lowerCase === true && upperCase === true && numberConfirm === false && special === false){
     var combo1 = lowerLetter.concat(upperLetter);
+    generatePassword(combo1);
   } else if (lowerCase === true && upperCase === false && numberConfirm === true && special === false){
     var combo2 = lowerLetter.concat(numbers);
+    generatePassword(combo2);
   } else if (lowerCase === true && upperCase === false && numberConfirm === false && special === true){
     var combo3 = lowerLetter.concat(specialChar);
+    generatePassword(combo3);
   } else if (lowerCase === true && upperCase === true && numberConfirm === true && special === false){
     var combo4 = lowerLetter.concat(upperLetter, numbers);
+    generatePassword(combo4);
   } else if (lowerCase === true && upperCase === true && numberConfirm === false && special === true){
     var combo5 = lowerLetter.concat(upperLetter, specialChar);
+    generatePassword(combo5);
   } else if (lowerCase === true && upperCase === false && numberConfirm === true && special === true){
     var combo6 = lowerLetter.concat(numbers, specialChar);
+    generatePassword(combo6);
   } else if (lowerCase === true && upperCase === true && numberConfirm === true && special === true){
     var combo7 = lowerLetter.concat(upperLetter, numbers, specialChar);
+    generatePassword(combo7);
   } else if (lowerCase === false && upperCase === true && numberConfirm === true && special === false){
     var combo8 = upperLetter.concat(numbers);
+    generatePassword(combo8);
   } else if (lowerCase === false && upperCase === true && numberConfirm === false && special === true){
     var combo9 = upperLetter.concat(specialChar);
+    generatePassword(combo9);
   } else if (lowerCase === false && upperCase === true && numberConfirm === true && special === true){
     var combo10 = upperLetter.concat(numbers, specialChar);
+    generatePassword(combo10);
   } else if (lowerCase === false && upperCase === false && numberConfirm === true && special === false){
-    var comb11 = numbers.concat(specialChar);
+    var combo11 = numbers.concat(specialChar);
+    generatePassword(combo11);
   };
   
 
 
 
- /* var password = generatePassword();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password"); 
-  passwordText.value = password; */
+  passwordText.value = password;
+
+  function generatePassword(combination) {
+    var randomChar = Math.floor(Math.random() * combination.length);
+    console.log(randomChar);
+  }
 
 
-  console.log('passLength is ' + typeof passLength + ' type')
-  console.log('Password Length is ' + passLength);
-  console.log('Lower case ' + lowerCase);
-  console.log('Upper case ' + upperCase);
-  console.log('Numbers ' + numbers);
-  console.log('Special Characters ' + special);
-  console.log('Password is going to be ' + passLength + ' long.')
 }
 
 // Add event listener to generate button
