@@ -8,9 +8,8 @@ var specialChar = [ "!", "#", '"', "$", "%", "&", "'", "(", ")", "*", "+", ",", 
 
 // Write password to the #password input
 function writePassword() {
-  var passLength = parseInt(prompt('How long do you want your password to be? Choose from 8 - 128 characters'), 10);
-  passLength--;
-  if ( passLength < 7 || passLength > 127){
+  passLength = parseInt(prompt('How long do you want your password to be? Choose from 8 - 128 characters'), 10);
+  if ( passLength < 8 || passLength > 128 || passLength === NaN){
     alert('Please choose a number between 8 and 128!');
     writePassword();
     return;
@@ -63,21 +62,17 @@ function writePassword() {
     generatePassword(combo11);
   };
   
-
-
-
-  var password = generatePassword();
+  function generatePassword(combination) {
+    var generatedPassword = [];
+    for (i = 0; i < passLength; i++){
+      var randomChar = combination[Math.floor(Math.random() * combination.length)];
+      generatedPassword.push(randomChar);
+    }
+    password = generatedPassword.join('');
+  }
   var passwordText = document.querySelector("#password"); 
   passwordText.value = password;
-
-  function generatePassword(combination) {
-    var randomChar = Math.floor(Math.random() * combination.length);
-    console.log(randomChar);
-  }
-
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
