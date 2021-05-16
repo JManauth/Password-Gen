@@ -9,7 +9,8 @@ var specialChar = [ "!", "#", '"', "$", "%", "&", "'", "(", ")", "*", "+", ",", 
 // Write password to the #password input
 function writePassword() {
   passLength = parseInt(prompt('How long do you want your password to be? Choose from 8 - 128 characters'), 10);
-  if ( passLength < 8 || passLength > 128 || passLength === NaN){
+  console.log(passLength);
+  if ( passLength < 8 || passLength > 128 || isNaN(passLength) ){
     alert('Please choose a number between 8 and 128!');
     writePassword();
     return;
