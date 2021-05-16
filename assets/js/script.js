@@ -7,9 +7,11 @@ var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var specialChar = [ "!", "#", '"', "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "|", "}", "~"];
 
 // Write password to the #password input
+
 function writePassword() {
+  //prompts password requirements for user to chose from
   passLength = parseInt(prompt('How long do you want your password to be? Choose from 8 - 128 characters'), 10);
-  console.log(passLength);
+  //makes sure user choses a valid password length
   if ( passLength < 8 || passLength > 128 || isNaN(passLength) ){
     alert('Please choose a number between 8 and 128!');
     writePassword();
@@ -19,7 +21,7 @@ function writePassword() {
   var upperCase = confirm('do you want upper case letters in your password?');
   var numberConfirm = confirm('do you want numbers in your password?');
   var special = confirm('do you want special characters in your password? ex: "#, %, &, $"');
-
+  // this logic determines which combination of arrays to use according to user selections
   if (lowerCase === true && upperCase === false && numberConfirm === false && special === false){
     generatePassword(lowerLetter);
   } else if (lowerCase === false && upperCase === true && numberConfirm === false && special === false){
@@ -29,6 +31,7 @@ function writePassword() {
   } else if (lowerCase === false && upperCase === false && numberConfirm === false && special === true){
     generatePassword(specialChar);
   } else if (lowerCase === true && upperCase === true && numberConfirm === false && special === false){
+    //assigns combination of arrays and runs function using combination as parameter
     var combo1 = lowerLetter.concat(upperLetter);
     generatePassword(combo1);
   } else if (lowerCase === true && upperCase === false && numberConfirm === true && special === false){
@@ -63,12 +66,16 @@ function writePassword() {
     generatePassword(combo11);
   };
   
+  //this function creates the randomized password
   function generatePassword(combination) {
     var generatedPassword = [];
+    //this code will loop through however long the user wants password to be and assigns
+    //a random characted according to array combination and creates a new array
     for (i = 0; i < passLength; i++){
       var randomChar = combination[Math.floor(Math.random() * combination.length)];
       generatedPassword.push(randomChar);
     }
+    //this will join the array into a single string
     password = generatedPassword.join('');
   }
   var passwordText = document.querySelector("#password"); 
